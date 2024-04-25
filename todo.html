@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            width: 80%;
+            text-align: left;
+            color: black;
+            font-size: 20px;
+            background-color: lightgrey;
+            padding: 10px;
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        ul li.completed {
+            text-decoration: line-through;
+            background-color: #ccc;
+        }
+        .header {
+            text-align: center;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .deleteBtn {
+            margin-left: 10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>QiQi's TODO List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a task...">
+        <button onclick="addTask()">Add</button>
+    </div>
+    
+    <ul id="taskList">
+        <!-- Sample tasks will be dynamically added here -->
+    </ul>
+
+    <script>
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let taskContent = input.value.trim();
+            if (taskContent !== "") {
+                let taskList = document.getElementById("taskList");
+                let li = document.createElement("li");
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.addEventListener("change", function() {
+                    toggleTask(li, this.checked);
+                });
+
+                let taskText = document.createTextNode(taskContent);
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "X";
+                deleteBtn.className = "deleteBtn";
+                deleteBtn.addEventListener("click", function() {
+                    deleteTask(li);
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(taskText);
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+
+                input.value = ""; // Clear the input field after adding a task
+            }
+        }
+
+        function toggleTask(taskItem, isChecked) {
+            if (isChecked) {
+                taskItem.classList.add("completed");
+            } else {
+                taskItem.classList.remove("completed");
+            }
+        }
+
+        function deleteTask(taskItem) {
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>
