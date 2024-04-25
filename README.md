@@ -22,7 +22,4 @@ Use HTML, CSS, and JavaScript to allow users to manage daily tasks by adding, ma
 2. **Mark a Task as Completed**: Click the checkbox next to the task to mark it as completed.
 3. **Delete a Task**: Click the "X" button next to a task to remove it from the list.
 
-## Deployment
-This application is deployed on GitHub Pages. You can access it [here](#) (insert the URL where your app is hosted).
-
 
